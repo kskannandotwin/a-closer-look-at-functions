@@ -1,22 +1,29 @@
 'use strict';
 
-const bookings = [];
-
-const createBooking = function(flightNum, numPassengers = 1, price = 199 * numPassengers) {
-    // numPassengers = numPassengers || 1;
-    // price = price || 199;
-    const booking = {
-        flightNum,
-        numPassengers,
-        price
-    }
-    console.log(booking);
-    bookings.push(booking);
+const oneWord = function (str) {
+    return str.replace(/ /g, '').toLowerCase();
 }
 
-createBooking('LH123');
-createBooking('LH123', 2, 800);
-createBooking('LH123', 2);
-createBooking('LH123', 5);
+const upperFirstWord = function (str) {
+    const [first, ...others] = str.split(' ');
+    return [first.toUpperCase(), ...others].join(' ');
+}
 
-createBooking('LH123', undefined, 1000);
+// higher order function
+const transformer = function (str, fn) {
+    console.log(`Original string: ${str}`);
+    console.log(`Transformed string: ${fn(str)}`);
+    console.log(`Transformed by: ${fn.name}`);
+}
+
+transformer('JavaScript is the best!', upperFirstWord);
+transformer('JavaScript is the best!', oneWord);
+
+// JS uses callbacks all the time
+const high5 = function () {
+    console.log('Hi');
+}
+
+document.body.addEventListener('click', high5);
+
+['Jonas', 'Martha', 'Adam'].forEach(high5);
